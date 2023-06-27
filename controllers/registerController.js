@@ -1,13 +1,17 @@
-import { v4 } from "uuid";
+import { z } from 'zod';
+
 export let users = [];
-export const createUser = async (req, res, next) => {
-    const { email, password, passwordReapeat } = await req.body;
-    if (password === passwordReapeat) {
-      const Id = users.length + 1;
-      users.push({ Id, email, password });
-      res.send(users);
-    } else {
-      res.status(400).send('please re-enter you password');
-    }
+
+export const createUser = (req, res, next) => {
+  const { email, password, passwordRepeat } = req.body;
+  const id = users.length + 1;
+  if (users.some(user => user.email === email)) {
+    return res.status(400).send('Email is already in use');
   }
-  
+  if (password !== passwordRepeat) {
+    return res.status(400).send('Passwords do not match');
+  }
+  const user = { id, email, password };
+  users.push(user);
+  res.send("registeres");
+};

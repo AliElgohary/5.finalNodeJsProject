@@ -1,4 +1,9 @@
 import * as registeredUsers from "./registerController.js";
+import  Jwt  from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
+
 const usersArray = registeredUsers.users;
 
 export const login = (req, res, next) => {
@@ -9,5 +14,6 @@ export const login = (req, res, next) => {
   if (!user) {
     return res.status(401).json({ error: "Invalid email or password" });
   }
-  res.send(user);
+  const token = Jwt.sign(user, process.env.JWT_SECRET)
+  res.send({...user, token});
 };
