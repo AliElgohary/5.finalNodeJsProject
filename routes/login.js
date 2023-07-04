@@ -5,6 +5,7 @@ import { ValidateUser, ValidateLogin } from "../services/validateUsers.js";
 
 
 
+
 export const router = Router();
 router.post('/register', ValidateUser ,createUser)
 router.post('/login' , ValidateLogin ,login)
