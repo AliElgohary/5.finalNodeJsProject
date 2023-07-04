@@ -13,4 +13,4 @@
 2. to POST to products: http://localhost:8080/products
 3. to GET a product by ID: http://localhost:8080/products/id
 4. to PUT(update) a certain product: http://localhost:8080/products/id
-5. 3. to DELETE a product by ID: http://localhost:8080/products/id
+5.  to DELETE a product by ID: http://localhost:8080/products/id
